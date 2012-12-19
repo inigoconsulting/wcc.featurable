@@ -1,5 +1,4 @@
-.. contents::
+README for wcc.featurable
+==========================================
 
-Introduction
-============
-
+This product contains traces of nuts
