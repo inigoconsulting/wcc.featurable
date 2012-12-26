@@ -6,4 +6,13 @@
 
     <!-- -*- extra stuff goes here -*- -->
 
+    <plone:behavior
+        title="Featurable"
+        description="Make content featurable"
+        provides=".featurable.IFeaturable"
+        factory=".featurable.Featurable"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
+
 </configure>

@@ -1,5 +1,8 @@
 from collective.grok import gs
 from wcc.featurable import MessageFactory as _
+from plone.registry.interfaces import IRegistry
+from zope.component import getUtility
+from wcc.featurable.interfaces import IFeaturableSettings
 
 @gs.importstep(
     name=u'wcc.featurable', 
@@ -11,3 +14,5 @@ def setupVarious(context):
     portal = context.getSite()
 
     # do anything here
+    registry = getUtility(IRegistry)
+    registry.registerInterface(IFeaturableSettings)

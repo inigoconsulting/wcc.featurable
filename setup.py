@@ -29,6 +29,9 @@ setup(name='wcc.featurable',
           'plone.app.dexterity',
           'plone.namedfile [blobs]',
           'collective.grok',
+          'plone.app.registry',
+          'archetypes.schemaextender',
+          'archetypes.markerfield',
           # -*- Extra requirements: -*-
       ],
       extras_require={
