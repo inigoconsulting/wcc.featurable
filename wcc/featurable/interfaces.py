@@ -19,4 +19,5 @@ class IFeaturableSettings(Interface):
         default=600
     )
 
-
+class IFeaturableProvider(Interface):
+    pass
