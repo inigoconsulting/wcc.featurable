@@ -7,11 +7,13 @@ from plone.app.portlets.portlets import base
 from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.app.portlets.cache import render_cachekey
+from plone.registry.interfaces import IRegistry
 
 from Acquisition import aq_inner
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from wcc.featurable import MessageFactory as _
-from wcc.featurable.interfaces import IFeaturableProvider
+from wcc.featurable.interfaces import IFeaturableProvider, IFeaturableSettings
+import dateutil
 
 class IFeaturedContent(IPortletDataProvider):
     """
@@ -49,7 +51,21 @@ class Renderer(base.Renderer):
     def items(self):
         provider = getUtility(IFeaturableProvider)
         brains = provider.query(portal_type=self.data.content_types)
-        return brains
+        return brains[:self.data.count]
+
+    def get_date(self, brain):
+        date = brain.Date
+        if isinstance(date, str):
+            return dateutil.parser.parse(date).strftime('%d.%m.%Y')
+        return date.strftime('%d.%m.%Y')
+
+    def get_feature_image(self, brain):
+        obj = brain.getObject()
+        scales = obj.restrictedTraverse('@@images')
+        registry = getUtility(IRegistry)
+        proxy = registry.forInterface(IFeaturableSettings)
+        return scales.scale('feature_image', width=proxy.feature_image_width,
+                height=proxy.feature_image_height)
 
 class AddForm(base.AddForm):
     form_fields = form.Fields(IFeaturedContent)

@@ -9,11 +9,15 @@
 
     <dd class="portletItem">
         <div tal:repeat="item view/items">
-            <h4 tal:content="item/Title">
+            <h4><a tal:attributes="href item/getURL" 
+                    tal:content="item/Title"></a>
             </h4>
             <div class="byline">
                 <span i18n:translate="posted_on">Posted On</span>
-                <span tal:replace="item/Date"></span>
+                <span tal:replace="python:view.get_date(item)"></span>
+            </div>
+            <div class="featureImage" >
+                <img tal:replace="structure python:view.get_feature_image(item)"/>
             </div>
             <div tal:content="item/Description">
             </div>
