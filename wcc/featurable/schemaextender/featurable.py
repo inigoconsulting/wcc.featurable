@@ -37,7 +37,7 @@ class Featurable(grok.Adapter):
     # This applies to all AT Content Types, change this to
     # the specific content type interface you want to extend
     grok.context(IFeaturable)
-
+    grok.name('wcc.featurable')
     grok.implements(IOrderableSchemaExtender, IBrowserLayerAwareExtender)
     grok.provides(IOrderableSchemaExtender)
 
