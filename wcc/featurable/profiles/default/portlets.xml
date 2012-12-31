@@ -2,5 +2,9 @@
 <portlets>
 
     <!-- -*- extra stuff goes here -*- -->
+ <portlet 
+   addview="wcc.featurable.portlet.FeaturedContent"
+   title="Featured Content"
+   description="List featured contents"/>
 
 </portlets>

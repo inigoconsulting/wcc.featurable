@@ -1,0 +1,28 @@
+<dl class="portlet portletFeaturedContent"
+    i18n:domain="wcc.featurable">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        Featured Content
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <dd class="portletItem">
+        <div tal:repeat="item view/items">
+            <h4 tal:content="item/Title">
+            </h4>
+            <div class="byline">
+                <span i18n:translate="posted_on">Posted On</span>
+                <span tal:replace="item/Date"></span>
+            </div>
+            <div tal:content="item/Description">
+            </div>
+        </div>
+    </dd>
+
+    <dd class="portletFooter">
+        <span class="portletBottomLeft"></span>
+        <span class="portletBottomRight"></span>
+    </dd>
+
+</dl>
