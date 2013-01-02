@@ -45,6 +45,11 @@ class IFeaturable(form.Schema, IBaseFeaturable):
 
     # -*- Your Zope schema definitions here ... -*-
 
+    form.fieldset('settings',
+        label=_(u'Settings'),
+        fields=['feature_image', 'is_featured']
+    )
+
     feature_image = FeatureImage(
         title=_(u'Feature Image'),
         required=False,

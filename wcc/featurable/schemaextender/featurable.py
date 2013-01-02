@@ -37,7 +37,7 @@ class Featurable(grok.Adapter):
     # This applies to all AT Content Types, change this to
     # the specific content type interface you want to extend
     grok.context(IFeaturable)
-    grok.name('wcc.featurable')
+    grok.name('wcc.featurable.featurable')
     grok.implements(IOrderableSchemaExtender, IBrowserLayerAwareExtender)
     grok.provides(IOrderableSchemaExtender)
 
@@ -51,14 +51,14 @@ class Featurable(grok.Adapter):
             pil_quality =100,
             validators = (ArchetypeImageSizeValidator(),),
             storage = atapi.AttributeStorage(),
-            schemata='feature',
+            schemata='settings',
             widget = ImageWidget(
                 label= _("Feature Image"),
             )
         ),
 
         ExtensionBooleanField('is_featured',
-            schemata='feature',
+            schemata='settings',
             widget=atapi.BooleanField._properties['widget'](
                 label=_('Is Featured'),
                 description=_(u'Feature this item')
