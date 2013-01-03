@@ -17,6 +17,15 @@
     <include package=".portlet"/>
     <interface interface=".interfaces.IFeaturable"/>
 
+    <class class="Products.ATContentTypes.content.document.ATDocument"> 
+       <implements interface="wcc.featurable.interfaces.IFeaturable"/> 
+   </class>
+
+    <class class="Products.ATContentTypes.content.newsitem.ATNewsItem"> 
+       <implements interface="wcc.featurable.interfaces.IFeaturable"/> 
+    </class>
+
+
     <!-- -*- extra stuff goes here -*- -->
 
 </configure>
