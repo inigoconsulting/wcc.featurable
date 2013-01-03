@@ -1,8 +1,9 @@
 <dl class="portlet portletFeaturedContent"
     i18n:domain="wcc.featurable">
-
-    <dd class="portletItem">
-        <div tal:repeat="item view/items" style="float:left;width:200px">
+    <dd class="portletItem" style="padding:0">
+        <div tal:repeat="item view/items" 
+             style="float:left;width:200px;padding:0 5px;border-left:1px solid #ccc" 
+             >
             <h4 style="text-transform:uppercase"><a tal:attributes="href item/getURL" 
                     tal:content="item/Title"></a>
             </h4>
