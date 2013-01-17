@@ -1,0 +1,80 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2013-01-17 00:50+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: wcc.featurable\n"
+
+#: ./__init__.py:24
+#: ./setuphandlers.py:10
+msgid ""
+msgstr ""
+
+#: ./portlet/featuredcontent.py:72
+msgid "Add Featured Content"
+msgstr ""
+
+#: ./portlet/featuredcontent.py:28
+msgid "Content types"
+msgstr ""
+
+#: ./portlet/featuredcontent.py:80
+msgid "Edit Featured Content"
+msgstr ""
+
+#: ./behavior/featurable.py:54
+#: ./schemaextender/featurable.py:56
+msgid "Feature Image"
+msgstr ""
+
+#: ./behavior/featurable.py:60
+#: ./schemaextender/featurable.py:64
+msgid "Feature this item"
+msgstr ""
+
+#: ./portlet/featuredcontent.py:41
+msgid "Featured Content"
+msgstr ""
+
+#: ./validators.py:26
+msgid "Invalid size. Please upload %sx%s image"
+msgstr ""
+
+#: ./behavior/featurable.py:59
+#: ./schemaextender/featurable.py:63
+msgid "Is Featured"
+msgstr ""
+
+#: ./portlet/featuredcontent.py:73
+msgid "List featured contents"
+msgstr ""
+
+#: ./portlet/featuredcontent.py:23
+msgid "Number of items to list"
+msgstr ""
+
+#: ./behavior/featurable.py:49
+msgid "Settings"
+msgstr ""
+
+#. Default: "Posted On"
+#: ./portlet/templates/featuredcontent.pt:11
+msgid "posted_on"
+msgstr ""
+
+#: ./setuphandlers.py:9
+msgid "wcc.featurable import handler"
+msgstr ""
+
