@@ -9,7 +9,9 @@
             </h4>
 
             <div class="featureImage" style="margin: 10px 0px;text-align:center">
-                <img tal:replace="structure python:view.get_feature_image(item)"/>
+                <a tal:attributes="href item/absolute_url">
+                    <img tal:replace="structure python:view.get_feature_image(item)"/>
+                </a>
             </div>
             <div>
                 <p tal:content="item/Description"></p>
