@@ -57,13 +57,13 @@ class Featurable(grok.Adapter):
             )
         ),
 
-        ExtensionBooleanField('is_featured',
-            schemata='settings',
-            widget=atapi.BooleanField._properties['widget'](
-                label=_('Is Featured'),
-                description=_(u'Feature this item')
-            )
-        )
+#        ExtensionBooleanField('is_featured',
+#            schemata='settings',
+#            widget=atapi.BooleanField._properties['widget'](
+#                label=_('Is Featured'),
+#                description=_(u'Feature this item')
+#            )
+#        )
     ]
 
     def __init__(self, context):

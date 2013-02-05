@@ -10,6 +10,8 @@ class FeaturableProvider(grok.GlobalUtility):
         brains = site.portal_catalog(
             object_provides=IFeaturable.__identifier__,
             is_featured=True,
+            sort_on='Date',
+            sort_order='descending',
             **params
         )
         return brains

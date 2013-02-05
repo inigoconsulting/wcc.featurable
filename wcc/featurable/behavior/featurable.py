@@ -47,7 +47,7 @@ class IFeaturable(form.Schema, IBaseFeaturable):
 
     form.fieldset('settings',
         label=_(u'Settings'),
-        fields=['feature_image', 'is_featured']
+        fields=['feature_image']
     )
 
     feature_image = FeatureImage(
@@ -55,10 +55,10 @@ class IFeaturable(form.Schema, IBaseFeaturable):
         required=False,
     )
 
-    is_featured = schema.Bool(
-        title=_(u'Is Featured'),
-        description=_(u'Feature this item'),
-    )
+#    is_featured = schema.Bool(
+#        title=_(u'Is Featured'),
+#        description=_(u'Feature this item'),
+#    )
 
 @form.validator(field=IFeaturable['feature_image'])
 def validateFeatureImage(value):
@@ -76,7 +76,7 @@ class Featurable(object):
     adapts(IDexterityContent)
 
     _delegated_attributes = [
-        'feature_image', 'is_featured',
+        'feature_image'
     ]
 
     def __init__(self, context):

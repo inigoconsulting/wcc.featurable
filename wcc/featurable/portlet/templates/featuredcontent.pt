@@ -1,17 +1,14 @@
 <dl class="portlet portletFeaturedContent"
-    i18n:domain="wcc.featurable">
-    <dd class="portletItem" style="padding:0">
-        <div tal:repeat="item view/items" 
-             style="float:left;width:200px;padding:0 5px;border-left:1px solid #ccc" 
-             >
-            <h4 style="text-transform:uppercase"><a tal:attributes="href item/getURL" 
+    i18n:domain="wcc.featurable"
+    tal:define="item view/item;">
+    <dd class="portletItem" style="padding:5px">
+        <div tal:define="featureimage python:view.get_feature_image(item)">
+            <h4 tal:condition="not:featureimage"
+                    style="text-transform:uppercase"><a tal:attributes="href item/absolute_url" 
                     tal:content="item/Title"></a>
             </h4>
-            <div class="byline" style="font-size:85%;color:#666">
-                <span i18n:translate="posted_on">Posted On</span>
-                <span tal:replace="python:view.get_date(item)"></span>
-            </div>
-            <div class="featureImage" style="margin: 10px 0px;">
+
+            <div class="featureImage" style="margin: 10px 0px;text-align:center">
                 <img tal:replace="structure python:view.get_feature_image(item)"/>
             </div>
             <div>
@@ -20,5 +17,4 @@
         </div>
         <div class="visualClear"></div>
     </dd>
-
 </dl>
