@@ -2,7 +2,8 @@
     i18n:domain="wcc.featurable"
     tal:define="item view/item;">
     <dd class="portletItem" style="padding:5px">
-        <div tal:define="featureimage python:view.get_feature_image(item)">
+        <div tal:define="featureimage python:view.get_feature_image(item)"
+            tal:attributes="style view/getstyle">
             <h4 tal:condition="not:featureimage"
                     style="text-transform:uppercase"><a tal:attributes="href item/absolute_url" 
                     tal:content="item/Title"></a>

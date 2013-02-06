@@ -95,6 +95,15 @@ class Renderer(base.Renderer):
         return scales.scale('feature_image', width=proxy.feature_image_width,
                 height=proxy.feature_image_height)
 
+    def get_featureimage_width(self):
+        registry = getUtility(IRegistry)
+        proxy = registry.forInterface(IFeaturableSettings)
+        return proxy.feature_image_width
+
+
+    def getstyle(self):
+        return 'width:%spx;margin:0 auto;' % (self.get_featureimage_width())
+
 class AddForm(base.AddForm):
     form_fields = form.Fields(IFeaturedContent)
     form_fields['item'].custom_widget = UberSelectionWidget
