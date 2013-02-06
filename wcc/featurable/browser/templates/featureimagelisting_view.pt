@@ -14,7 +14,7 @@
         <tal:block define="listing_macro context/folder_listing/macros/listing">
             <metal:macro use-macro="listing_macro">
                 <metal:slot fill-slot="entries">
-                    <table>
+                    <table style="width:100%">
                         <tr tal:repeat="item batch"  metal:define-macro="entries"
                             class="featureimagelisting-row">
                         <td tal:define="obj item/getObject"
