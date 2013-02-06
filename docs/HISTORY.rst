@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2 (unreleased)
+1.2 (2013-02-06)
 ----------------
 
 - equalize the size of featurecontent portlet
