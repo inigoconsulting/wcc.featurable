@@ -1,0 +1,8 @@
+.featureimagelisting-row {
+    border-top: 1px solid #ddd;
+}
+
+.featureimagelisting-row td {
+    padding:10px;
+    vertical-align:top;
+}
