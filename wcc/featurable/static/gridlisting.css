@@ -1,8 +1,7 @@
 .featureimagegrid {
     margin:5px 10px;
-    -moz-box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
-    -webkit-box-shadow: 4px 8px rgba(0,0,0,0.5);
-    box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+    border-right: 1px solid #ddd;
+    padding:5px 10px;
 }
 
 .featureimagegrid-content {
