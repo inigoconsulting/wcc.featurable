@@ -4,7 +4,7 @@ Changelog
 1.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- equalize the size of featurecontent portlet
 
 
 1.1 (2013-02-06)
