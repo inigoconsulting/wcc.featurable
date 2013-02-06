@@ -7,7 +7,15 @@
 
           <metal:block fill-slot="style_slot">
                 <link rel="stylesheet" href="++resource++wcc.featurable/gridlisting.css"/>
-          </metal:block>
+            </metal:block>
+            <metal:block fill-slot="javascript_head_slot">
+                <script src="++resource++wcc.featurable/equalHeights.js"></script>
+                <script>
+                    $(document).ready(function () {
+                        $('.featureimagegrid').equalHeights();
+                    })
+                </script>
+            </metal:block>
 </head>
 <body>
     <div metal:fill-slot="content-core">
@@ -16,8 +24,7 @@
                 <metal:slot fill-slot="entries">
                     <tal:entry repeat="item batch"  metal:define-macro="entries">
                         <div class="featureimagegrid" tal:define="obj item/getObject"
-                            style="float:left;"
-                            tal:attributes="width view/get_featureimage_width">
+                            tal:attributes="style string:width:${view/get_featureimage_width}px">
                             <a tal:attributes="href item/getURL">
                                 <img tal:replace="structure python:view.get_feature_image(obj)"/>
                             </a>
