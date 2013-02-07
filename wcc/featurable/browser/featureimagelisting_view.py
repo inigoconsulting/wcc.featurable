@@ -22,7 +22,7 @@ class FeatureImageListingView(grok.View):
         registry = getUtility(IRegistry)
         proxy = registry.forInterface(IFeaturableSettings)
 
-        placeholder = '<div style="height:%spx;width:%spx;"></div>' % (
+        placeholder = u'<div style="height:%spx;width:%spx;"></div>' % (
             proxy.feature_image_height,
             proxy.feature_image_width,
         )
@@ -31,7 +31,7 @@ class FeatureImageListingView(grok.View):
         scales = obj.restrictedTraverse('@@images')
         result = scales.scale('feature_image', width=proxy.feature_image_width,
                 height=proxy.feature_image_height)
-        return result if result else placeholder
+        return result.tag() if result else placeholder
 
 class FolderFeatureImageListingView(FeatureImageListingView):
     grok.context(IATFolder)
