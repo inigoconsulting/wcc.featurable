@@ -4,19 +4,29 @@
     <dd class="portletItem" style="padding:5px">
         <div tal:define="featureimage python:view.get_feature_image(item)"
             tal:attributes="style view/getstyle">
-            <h4 tal:condition="not:featureimage"><a tal:attributes="href item/absolute_url" 
+            <h4><a tal:attributes="href item/absolute_url" 
                     tal:content="item/Title"></a>
             </h4>
 
-            <div class="featureImage" style="margin: 10px 0px;text-align:center">
+            <div tal:condition="featureimage"
+                class="featureImage" style="margin: 10px 0px;text-align:center">
                 <a tal:attributes="href item/absolute_url">
-                    <img tal:replace="structure python:view.get_feature_image(item)"/>
+                    <img tal:replace="structure featureimage"/>
                 </a>
             </div>
-            <div>
+            <div class="featureDescription"
+                tal:condition="not:featureimage">
                 <p tal:content="item/Description"></p>
             </div>
         </div>
         <div class="visualClear"></div>
+        <script>
+        $(document).ready(function () {
+            $('.portletFeaturedContent .featureDescription p').trunk8({
+                lines: 10
+            });
+            $('.portletFeaturedContent h4 a').trunk8({lines: 2});
+        })
+        </script>
     </dd>
 </dl>
