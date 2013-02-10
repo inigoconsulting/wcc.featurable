@@ -22,10 +22,17 @@
         <div class="visualClear"></div>
         <script>
         $(document).ready(function () {
-            $('.portletFeaturedContent .featureDescription p').trunk8({
+        $('.portletFeaturedContent .featureDescription p').trunk8({
                 lines: 10
-            });
-            $('.portletFeaturedContent h4 a').trunk8({lines: 2});
+        }).each(
+            function () {
+                var text = $(this).html();
+                if (text.match('…$')) {
+                        $(this).html(text.split(" ").slice(0, 
+                            -1).join(" ") + '&hellip;');
+                    }
+             }
+        );
         })
         </script>
     </dd>
