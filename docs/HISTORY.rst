@@ -4,7 +4,7 @@ Changelog
 1.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Added collectivemultiview renderer for featured content (re #183) [izhar]
 
 
 1.5 (2013-02-11)
