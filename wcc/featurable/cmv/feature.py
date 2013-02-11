@@ -21,15 +21,13 @@ class FeatureRenderer(BaseRenderer):
     template = ViewPageTemplateFile('templates/feature.pt')
     schema = IFeatureRendererSchema
 
-    def get_date(self, brain):
-        obj = brain.getObject()
+    def get_date(self, obj):
         date = obj.Date()
         if isinstance(date, str):
             return dateutil.parser.parse(date).strftime('%d.%m.%Y')
         return date.strftime('%d.%m.%Y')
 
-    def get_feature_image(self, brain):
-        obj = brain.getObject()
+    def get_feature_image(self, obj):
         scales = obj.restrictedTraverse('@@images')
         registry = getUtility(IRegistry)
         proxy = registry.forInterface(IFeaturableSettings)
@@ -52,6 +50,6 @@ class FeatureRenderer(BaseRenderer):
                 'pos':idx,'columns':columns
         }
 
-    def results(self):
+    def items(self):
         columns = self.data.columns
-        return super(FeatureRenderer, self).results()[:columns]
+        return [i.getObject() for i in self.results()[:columns]]

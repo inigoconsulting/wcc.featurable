@@ -26,6 +26,11 @@
        <implements interface="wcc.featurable.interfaces.IFeaturable"/> 
    </class>
 
+    <class class="Products.ATContentTypes.content.event.ATEvent"> 
+       <implements interface="wcc.featurable.interfaces.IFeaturable"/> 
+   </class>
+
+
     <class class="Products.ATContentTypes.content.folder.ATFolder"> 
        <implements interface="wcc.featurable.interfaces.IFeaturable"/> 
    </class>
