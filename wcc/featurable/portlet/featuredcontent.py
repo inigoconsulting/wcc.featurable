@@ -15,7 +15,6 @@ from wcc.featurable import MessageFactory as _
 from wcc.featurable.interfaces import (IFeaturableProvider, 
                                         IFeaturableSettings,
                                         IFeaturable)
-from zope.component import getMultiAdapter
 from AccessControl import getSecurityManager
 from plone.app.vocabularies.catalog import SearchableTextSourceBinder
 from plone.app.form.widgets.uberselectionwidget import UberSelectionWidget
