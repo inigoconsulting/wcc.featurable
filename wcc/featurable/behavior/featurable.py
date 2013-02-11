@@ -55,10 +55,10 @@ class IFeaturable(form.Schema, IBaseFeaturable):
         required=False,
     )
 
-#    is_featured = schema.Bool(
-#        title=_(u'Is Featured'),
-#        description=_(u'Feature this item'),
-#    )
+    is_featured = schema.Bool(
+        title=_(u'Is Featured'),
+        description=_(u'Feature this item'),
+    )
 
 @form.validator(field=IFeaturable['feature_image'])
 def validateFeatureImage(value):

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<atcttool
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+    <topic_indexes>
+        <index name="is_featured"
+            description="Find items that are featured"
+            enabled="True" friendlyName="Is Featured">
+            <criteria>ATBooleanCriterion</criteria>
+        </index>
+    </topic_indexes>
+    <topic_metadata>
+        <metadata name="is_featured"
+            description="Find items that are featured" enabled="True"
+            friendlyName="Is Featured"/>
+    </topic_metadata>
+</atcttool>
