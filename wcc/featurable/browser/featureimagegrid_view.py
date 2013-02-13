@@ -29,12 +29,9 @@ class FeatureImageGridView(grok.View):
         if not IFeaturable.providedBy(obj):
             return placeholder
 
-        imgobj = obj.getField('feature_image').get(obj)
-        scales = imgobj.restrictedTraverse('@@images')
-        result = scales.scale('image', width=proxy.feature_image_width,
-                height=proxy.feature_image_height)
-        return result.tag() if result else placeholder
-
+        featureimages = obj.restrictedTraverse('@@featureimages')
+        result = featureimages.tag()
+        return result if result else placeholder
 
 
 class FolderFeatureImageGridView(FeatureImageGridView):

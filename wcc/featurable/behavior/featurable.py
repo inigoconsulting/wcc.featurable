@@ -49,9 +49,10 @@ class IFeaturable(form.Schema, IBaseFeaturable):
 
     form.fieldset('settings',
         label=_(u'Settings'),
-        fields=['feature_image']
+        fields=['feature_image', 'is_featured']
     )
 
+#    form.widget(feature_image='plone.formwidget.autocomplete.widget.AutocompleteFieldWidget')
     feature_image = RelationChoice(
         title=_(u'Feature Image'),
         required=False,
@@ -63,12 +64,6 @@ class IFeaturable(form.Schema, IBaseFeaturable):
         description=_(u'Feature this item'),
     )
 
-@form.validator(field=IFeaturable['feature_image'])
-def validateFeatureImage(value):
-    validator = DexterityImageSizeValidator()
-    validator.validate(value)
-    return True
-
 alsoProvides(IFeaturable,IFormFieldProvider)
 
 class Featurable(object):
@@ -79,7 +74,8 @@ class Featurable(object):
     adapts(IDexterityContent)
 
     _delegated_attributes = [
-        'feature_image'
+        'feature_image',
+        'is_featured'
     ]
 
     def __init__(self, context):

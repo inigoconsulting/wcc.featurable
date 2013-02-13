@@ -12,6 +12,7 @@
         provides=".featurable.IFeaturable"
         factory=".featurable.Featurable"
         for="plone.dexterity.interfaces.IDexterityContent"
+        marker=".featurable.IFeaturable"
         />
 
 
