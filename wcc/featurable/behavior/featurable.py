@@ -13,6 +13,8 @@ from wcc.featurable import MessageFactory as _
 from wcc.featurable.interfaces import IFeaturable as IBaseFeaturable
 from wcc.featurable.interfaces import IFeaturableSettings
 from wcc.featurable.validators import DexterityImageSizeValidator
+from plone.formwidget.contenttree import ObjPathSourceBinder
+from Products.ATContentTypes.interfaces.image import IATImage
 
 from plone.registry.interfaces import IRegistry
 from zope.component import ComponentLookupError, getUtility
@@ -50,9 +52,10 @@ class IFeaturable(form.Schema, IBaseFeaturable):
         fields=['feature_image']
     )
 
-    feature_image = FeatureImage(
+    feature_image = RelationChoice(
         title=_(u'Feature Image'),
         required=False,
+        source=ObjPathSourceBinder(object_provides=IATImage.__identifier__)
     )
 
     is_featured = schema.Bool(
