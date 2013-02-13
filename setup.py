@@ -32,7 +32,7 @@ setup(name='wcc.featurable',
           'plone.app.registry',
           'archetypes.schemaextender',
           'archetypes.markerfield',
-          'collective.js.trunk8'
+          'collective.js.trunk8',
           # -*- Extra requirements: -*-
       ],
       extras_require={

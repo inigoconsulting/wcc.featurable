@@ -28,8 +28,10 @@ class FeatureImageListingView(grok.View):
         )
         if not IFeaturable.providedBy(obj):
             return placeholder
-        scales = obj.restrictedTraverse('@@images')
-        result = scales.scale('feature_image', width=proxy.feature_image_width,
+
+        imageobj = obj.getField('feature_image').get(obj)
+        scales = imageobj.restrictedTraverse('@@images')
+        result = scales.scale('image', width=proxy.feature_image_width,
                 height=proxy.feature_image_height)
         return result.tag() if result else placeholder
 

@@ -12,6 +12,7 @@ from wcc.featurable import MessageFactory as _
 from zope.component import getUtility
 from plone.registry.interfaces import IRegistry
 from wcc.featurable.validators import ArchetypeImageSizeValidator
+from archetypes.referencebrowserwidget.widget import ReferenceBrowserWidget
 # Visit http://pypi.python.org/pypi/archetypes.schemaextender for full 
 # documentation on writing extenders
 
@@ -21,16 +22,8 @@ class ExtensionImageField(ExtensionField, atapi.ImageField):
 class ExtensionBooleanField(ExtensionField, atapi.BooleanField):
     pass
 
-class ImageWidget(atapi.ImageWidget):
-
-    def Description(self, instance, **kwargs):
-        registry = getUtility(IRegistry)
-        proxy = registry.forInterface(IFeaturableSettings)
-        return u"Upload feature image. Required size is %sx%s" % (
-                proxy.feature_image_width,
-                proxy.feature_image_height
-        )
-
+class ExtensionReferenceField(ExtensionField, atapi.ReferenceField):
+    pass
 
 class Featurable(grok.Adapter):
 
@@ -45,15 +38,19 @@ class Featurable(grok.Adapter):
 
     fields = [
         # add your extension fields here
-        ExtensionImageField('feature_image',
+        ExtensionReferenceField('feature_image',
             required = 0,
             languageIndependent = 1,
-            pil_quality =100,
-            validators = (ArchetypeImageSizeValidator(),),
+            relationship = 'featureImageRelatedImage',
+            allowed_types=('Image', 'TranslatableImage'),
             storage = atapi.AttributeStorage(),
             schemata='settings',
-            widget = ImageWidget(
+            widget =  ReferenceBrowserWidget(
                 label= _("Feature Image"),
+                allow_sorting = 1,
+                hide_inaccessible = 1,
+                force_close_on_insert = 0,
+                show_results_without_query = True,
             )
         ),
 

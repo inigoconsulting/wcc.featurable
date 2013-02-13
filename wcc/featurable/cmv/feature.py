@@ -28,10 +28,13 @@ class FeatureRenderer(BaseRenderer):
         return date.strftime('%d.%m.%Y')
 
     def get_feature_image(self, obj):
-        scales = obj.restrictedTraverse('@@images')
+        imageobj = obj.getField('feature_image').get(obj)
+        if not imageobj:
+            return ''
+        scales = imageobj.restrictedTraverse('@@images')
         registry = getUtility(IRegistry)
         proxy = registry.forInterface(IFeaturableSettings)
-        return scales.scale('feature_image', width=proxy.feature_image_width,
+        return scales.scale('image', width=proxy.feature_image_width,
                 height=proxy.feature_image_height)
 
     def get_featureimage_width(self):
