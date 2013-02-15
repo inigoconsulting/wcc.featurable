@@ -29,7 +29,7 @@
                 var text = $(this).html();
                 if (text.match('…$')) {
                         $(this).html(text.split(" ").slice(0, 
-                            -1).join(" ") + '&hellip;');
+                            -1).join(" ") + '…');
                     }
              }
         );
