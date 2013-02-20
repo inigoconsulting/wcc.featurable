@@ -3,6 +3,7 @@ from wcc.featurable.interfaces import IFeaturable, IFeaturableSettings
 from wcc.featurable.behavior.featurable import IFeaturable as IDexterityFeaturable
 from zope.component import getUtility
 from plone.registry.interfaces import IRegistry
+from AccessControl import getSecurityManager
 
 class FeatureImageUtilView(grok.View):
     grok.context(IFeaturable)
@@ -21,6 +22,10 @@ class FeatureImageUtilView(grok.View):
         imgobj = self.get_image()
         if not imgobj:
             return ''
+
+        sm = getSecurityManager()
+        if not sm.checkPermission('View', imgobj):
+            return''
 
         scales = imgobj.restrictedTraverse('@@images')
         result = scales.scale('image', width=proxy.feature_image_width,

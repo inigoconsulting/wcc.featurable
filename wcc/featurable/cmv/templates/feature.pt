@@ -1,46 +1,56 @@
-<div class="row">
+<tal:block tal:define="collection view/collection"
+    i18n:domain="wcc.featurable"
+    tal:condition="collection">
 
-    <tal:block repeat="item view/items">
-        <div tal:attributes="class python:view.get_class(repeatindex)"
-             tal:define="repeatindex repeat/item/index">
-            <dl class="portlet portletFeaturedContent"
-                i18n:domain="wcc.featurable">
-                <dd class="portletItem" style="padding:5px">
-                    <div tal:define="featureimage python:view.get_feature_image(item)"
-                        tal:attributes="style view/getstyle">
-                        <h4><a tal:attributes="href item/absolute_url" 
-                                tal:content="item/Title"></a>
-                        </h4>
+    <div class="row">
+        <tal:block repeat="item view/items">
+            <div tal:attributes="class python:view.get_class(repeatindex)"
+                tal:define="repeatindex repeat/item/index">
+                <dl class="portlet portletFeaturedContent"
+                    i18n:domain="wcc.featurable">
+                    <dd class="portletItem" style="padding:5px">
+                        <div tal:define="featureimage python:view.get_feature_image(item)"
+                            tal:attributes="style view/getstyle">
+                            <h4><a tal:attributes="href item/absolute_url" 
+                                    tal:content="item/Title"></a>
+                            </h4>
 
-                        <div tal:condition="featureimage"
-                            class="featureImage" style="margin: 10px 0px;text-align:center">
-                            <a tal:attributes="href item/absolute_url">
-                                <img tal:replace="structure featureimage"/>
-                            </a>
+                            <div tal:condition="featureimage"
+                                class="featureImage" style="margin: 10px 0px;text-align:center">
+                                <a tal:attributes="href item/absolute_url">
+                                    <img tal:replace="structure featureimage"/>
+                                </a>
+                            </div>
+                            <div class="featureDescription"
+                                tal:condition="not:featureimage">
+                                <p tal:content="item/Description"></p>
+                            </div>
                         </div>
-                        <div class="featureDescription"
-                            tal:condition="not:featureimage">
-                            <p tal:content="item/Description"></p>
-                        </div>
-                    </div>
-                    <div class="visualClear"></div>
-                    <script>
-                        $(document).ready(function () {
-                        $('.portletFeaturedContent .featureDescription p').trunk8({
-                        lines: 10
-                        }).each(
-                        function () {
-                        var text = $(this).html();
-                        if (text.match('…$')) {
-                        $(this).html(text.split(" ").slice(0,
-                        -1).join(" ") + '…');
-                        }
-                        }
-                        );
-                        })
-                    </script>
-                </dd>
-            </dl>
-        </div>
-    </tal:block>
-</div>
+                        <div class="visualClear"></div>
+                        <script>
+                            $(document).ready(function () {
+                            $('.portletFeaturedContent .featureDescription p').trunk8({
+                            lines: 10
+                            }).each(
+                            function () {
+                            var text = $(this).html();
+                            if (text.match('…$')) {
+                            $(this).html(text.split(" ").slice(0,
+                            -1).join(" ") + '…');
+                            }
+                            }
+                            );
+                            })
+                        </script>
+                    </dd>
+                </dl>
+            </div>
+        </tal:block>
+    </div>
+    <div style="text-align:right;padding-right:50px;font-weight:bold" 
+        class="featureportlet-more-news">
+        <a tal:attributes="href collection/absolute_url">
+            &raquo; <span i18n:translate="more_news">More News</span>
+    </a>
+    </div>
+</tal:block>
