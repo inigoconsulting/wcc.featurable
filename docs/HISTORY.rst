@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.7 (unreleased)
+1.7 (2013-02-21)
 ----------------
 
 - convert schemaextender featureimage to relationfield (re #193) [izhar]
