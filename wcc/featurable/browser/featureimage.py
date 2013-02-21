@@ -28,8 +28,9 @@ class FeatureImageUtilView(grok.View):
             return''
 
         scales = imgobj.restrictedTraverse('@@images')
-        result = scales.scale('image', width=proxy.feature_image_width,
-                height=proxy.feature_image_height)
+        result = scales.scale('image', 
+                width=proxy.feature_image_width,
+                height=999, direction='keep')
         return result.tag() if result else ''
 
 class DexterityFeatureImageUtilView(FeatureImageUtilView):

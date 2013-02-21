@@ -7,6 +7,7 @@ Changelog
 - convert schemaextender featureimage to relationfield (re #193) [izhar]
 - added a standard API for querying featureimage from both dexterity and
   archetype (re #193) [izhar]
+- only scale width of image [izhar]
 
 
 1.6 (2013-02-11)
