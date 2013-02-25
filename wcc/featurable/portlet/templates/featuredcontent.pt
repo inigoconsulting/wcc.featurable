@@ -1,12 +1,15 @@
 <dl class="portlet portletFeaturedContent"
     i18n:domain="wcc.featurable"
     tal:define="item view/item;">
-    <dd class="portletItem" style="padding:5px">
-        <div tal:define="featureimage python:view.get_feature_image(item)"
-            tal:attributes="style view/getstyle">
-            <h4><a tal:attributes="href item/absolute_url" 
-                    tal:content="item/Title"></a>
-            </h4>
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span><a tal:attributes="href item/absolute_url" 
+                tal:content="item/Title"></a></span>
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <dd class="portletItem odd">
+        <div tal:define="featureimage python:view.get_feature_image(item)">
 
             <div tal:condition="featureimage"
                 class="featureImage" style="margin: 10px 0px;text-align:center">
