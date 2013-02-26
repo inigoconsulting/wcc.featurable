@@ -52,11 +52,9 @@ class IFeaturable(form.Schema, IBaseFeaturable):
         fields=['feature_image', 'is_featured']
     )
 
-#    form.widget(feature_image='plone.formwidget.autocomplete.widget.AutocompleteFieldWidget')
-    feature_image = RelationChoice(
+    feature_image = namedfile.NamedBlobImage(
         title=_(u'Feature Image'),
         required=False,
-        source=ObjPathSourceBinder(object_provides=IATImage.__identifier__)
     )
 
     is_featured = schema.Bool(

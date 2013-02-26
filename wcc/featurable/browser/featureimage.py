@@ -12,31 +12,11 @@ class FeatureImageUtilView(grok.View):
     def render(self):
         return str(self)
 
-    def get_image(self):
-        obj = self.context
-        return obj.getField('feature_image').get(obj)
-
     def tag(self):
         registry = getUtility(IRegistry)
         proxy = registry.forInterface(IFeaturableSettings)
-        imgobj = self.get_image()
-        if not imgobj:
-            return ''
-
-        sm = getSecurityManager()
-        if not sm.checkPermission('View', imgobj):
-            return''
-
-        scales = imgobj.restrictedTraverse('@@images')
-        result = scales.scale('image', 
+        scales = self.context.restrictedTraverse('@@images')
+        result = scales.scale('feature_image', 
                 width=proxy.feature_image_width,
                 height=999, direction='keep')
         return result.tag() if result else ''
-
-class DexterityFeatureImageUtilView(FeatureImageUtilView):
-    grok.context(IDexterityFeaturable)
-
-    def get_image(self):
-        if getattr(self.context, 'feature_image', None):
-            return self.context.feature_image.to_object
-        return None

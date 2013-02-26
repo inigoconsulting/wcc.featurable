@@ -13,11 +13,9 @@ from zope.component import getUtility
 from plone.registry.interfaces import IRegistry
 from wcc.featurable.validators import ArchetypeImageSizeValidator
 from archetypes.referencebrowserwidget.widget import ReferenceBrowserWidget
+from plone.app.blob.subtypes.image import ExtensionBlobField
 # Visit http://pypi.python.org/pypi/archetypes.schemaextender for full 
 # documentation on writing extenders
-
-class ExtensionImageField(ExtensionField, atapi.ImageField):
-    pass    
 
 class ExtensionBooleanField(ExtensionField, atapi.BooleanField):
     pass
@@ -38,19 +36,12 @@ class Featurable(grok.Adapter):
 
     fields = [
         # add your extension fields here
-        ExtensionReferenceField('feature_image',
+        ExtensionBlobField('feature_image',
             required = 0,
             languageIndependent = 1,
-            relationship = 'featureImageRelatedImage',
-            allowed_types=('Image', 'TranslatableImage'),
             storage = atapi.AttributeStorage(),
-            schemata='settings',
-            widget =  ReferenceBrowserWidget(
-                label= _("Feature Image"),
-                allow_sorting = 1,
-                hide_inaccessible = 1,
-                force_close_on_insert = 0,
-                show_results_without_query = True,
+            widget=ExtensionBlobField._properties['widget'](
+                label=_('Feature image'),
             )
         ),
 

@@ -5,10 +5,46 @@ from zope.component import getUtility
 from zope.component.hooks import getSite
 from plone.app.layout.navigation.root import getNavigationRoot
 from logging import getLogger
+from Products.Archetypes import atapi
+from archetypes.schemaextender.field import ExtensionField
+import sys
 logger = getLogger('wcc.featurable.upgrade')
 
 # -*- extra stuff goes here -*- 
 
+
+@gs.upgradestep(title=u'Upgrade wcc.featurable to 1005',
+                description=u'Upgrade wcc.featurable to 1005',
+                source='1004', destination='1005',
+                sortkey=1, profile='wcc.featurable:default')
+def to1005(context):
+    setup = getToolByName(context, 'portal_setup')
+    setup.runAllImportStepsFromProfile('profile-wcc.featurable.upgrades:to1005')
+
+    class ExtensionReferenceField(ExtensionField, atapi.ReferenceField):
+        pass
+
+
+    catalog = getToolByName(context, 'portal_catalog')
+
+    portal = getSite()
+    field = ExtensionReferenceField('feature_image',
+        required = 0,
+        languageIndependent = 1,
+        relationship = 'featureImageRelatedImage',
+        allowed_types=('Image', 'TranslatableImage'),
+        storage = atapi.AttributeStorage(),
+    )
+
+    for brain in catalog({'object_provides': IFeaturable.__identifier__,
+                        'Language':'all'}):
+        obj = brain.getObject()
+        rel = field.get(obj)
+        if rel is not None:
+            val = rel.getField('image').get(rel)
+            obj.getField('feature_image').set(obj, val)
+        obj.reindexObject()
+    
 
 @gs.upgradestep(title=u'Upgrade wcc.featurable to 1004',
                 description=u'Upgrade wcc.featurable to 1004',
