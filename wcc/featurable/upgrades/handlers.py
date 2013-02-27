@@ -8,6 +8,7 @@ from logging import getLogger
 from Products.Archetypes import atapi
 from archetypes.schemaextender.field import ExtensionField
 import sys
+from plone.app.blob.field import ImageField as BlobImageField
 logger = getLogger('wcc.featurable.upgrade')
 
 # -*- extra stuff goes here -*- 
@@ -24,6 +25,11 @@ def to1005(context):
     class ExtensionReferenceField(ExtensionField, atapi.ReferenceField):
         pass
 
+    class ExtensionBlobImageField(ExtensionField, BlobImageField):
+        pass
+
+    class ExtensionStringField(ExtensionField, atapi.StringField):
+        pass
 
     catalog = getToolByName(context, 'portal_catalog')
 
@@ -36,13 +42,35 @@ def to1005(context):
         storage = atapi.AttributeStorage(),
     )
 
+    leadimagefield = ExtensionBlobImageField('leadImage',
+        required = 0,
+        languageIndependent = 1,
+        storage = atapi.AnnotationStorage(migrate=True),
+    )
+
+    leadimagecaptionfield = ExtensionStringField('leadImage_caption',
+        storage = atapi.AnnotationStorage()
+    )
+
+    catalog.manage_reindexIndex(ids=['object_provides'])
+
     for brain in catalog({'object_provides': IFeaturable.__identifier__,
                         'Language':'all'}):
         obj = brain.getObject()
+        leadimage = leadimagefield.get(obj)
+        if leadimage and leadimage.data:
+            existing = obj.getField('image').get(obj)
+            if not (existing and existing.data):
+                obj.getField('image').set(obj, leadimage)
+                obj.getField('imageCaption').set(obj,
+                        leadimagecaptionfield.get(obj))
+                obj.reindexObject()
+                continue
+
         rel = field.get(obj)
         if rel is not None:
             val = rel.getField('image').get(rel)
-            obj.getField('feature_image').set(obj, val)
+            obj.getField('image').set(obj, val.data)
         obj.reindexObject()
     
 
