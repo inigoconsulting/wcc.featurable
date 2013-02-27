@@ -16,7 +16,9 @@ class FeatureImageUtilView(grok.View):
         registry = getUtility(IRegistry)
         proxy = registry.forInterface(IFeaturableSettings)
         scales = self.context.restrictedTraverse('@@images')
-        result = scales.scale('feature_image', 
+        if getattr(self.context, 'feature_hide_image', False):
+            return ''
+        result = scales.scale('image', 
                 width=proxy.feature_image_width,
                 height=999, direction='keep')
         return result.tag() if result else ''

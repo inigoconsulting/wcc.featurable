@@ -13,7 +13,9 @@ from zope.component import getUtility
 from plone.registry.interfaces import IRegistry
 from wcc.featurable.validators import ArchetypeImageSizeValidator
 from archetypes.referencebrowserwidget.widget import ReferenceBrowserWidget
-from plone.app.blob.subtypes.image import ExtensionBlobField
+from plone.app.blob.field import ImageField as BlobImageField
+from Products.ATContentTypes.interfaces import IATNewsItem
+
 # Visit http://pypi.python.org/pypi/archetypes.schemaextender for full 
 # documentation on writing extenders
 
@@ -22,6 +24,13 @@ class ExtensionBooleanField(ExtensionField, atapi.BooleanField):
 
 class ExtensionReferenceField(ExtensionField, atapi.ReferenceField):
     pass
+
+class ExtensionStringField(ExtensionField, atapi.StringField):
+    pass
+
+class ExtensionBlobImageField(ExtensionField, BlobImageField):
+    pass
+
 
 class Featurable(grok.Adapter):
 
@@ -34,25 +43,52 @@ class Featurable(grok.Adapter):
 
     layer = IProductSpecific
 
-    fields = [
-        # add your extension fields here
-        ExtensionBlobField('feature_image',
-            required = 0,
-            languageIndependent = 1,
-            storage = atapi.AttributeStorage(),
-            widget=ExtensionBlobField._properties['widget'](
-                label=_('Feature image'),
-            )
-        ),
+    @property
+    def fields(self):
+        image_fields = [
+            # add your extension fields here
+            ExtensionBlobImageField('image',
+                required = 0,
+                languageIndependent = True,
+                storage = atapi.AttributeStorage(),
+                widget=ExtensionBlobImageField._properties['widget'](
+                    label=_('Image'),
+                )
+            ),
 
-        ExtensionBooleanField('is_featured',
-            schemata='settings',
-            widget=atapi.BooleanField._properties['widget'](
-                label=_('Is Featured'),
-                description=_(u'Feature this item')
+            ExtensionStringField('imageCaption',
+                required = 0,
+                languageIndependent = False,
+                storage = atapi.AttributeStorage(),
+                widget=atapi.StringField._properties['widget'](
+                    label=_('Image Caption')
+                )
             )
-        )
-    ]
+        ]
+
+
+        fields = [
+            ExtensionBooleanField('is_featured',
+                schemata='settings',
+                languageIndependent = 1,
+                widget=atapi.BooleanField._properties['widget'](
+                    label=_('Is Featured'),
+                    description=_(u'Feature this item')
+                )
+            ),
+            ExtensionBooleanField('feature_hide_image',
+                schemata='settings',
+                languageIndependent = 1,
+                widget=atapi.BooleanField._properties['widget'](
+                    label=_('Hide image from displaying in feature listings'),
+                )
+            )
+        ]
+
+        if IATNewsItem.providedBy(self.context):
+            return fields
+
+        return image_fields + fields
 
     def __init__(self, context):
         self.context = context

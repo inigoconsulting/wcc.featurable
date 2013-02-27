@@ -18,27 +18,8 @@ from Products.ATContentTypes.interfaces.image import IATImage
 
 from plone.registry.interfaces import IRegistry
 from zope.component import ComponentLookupError, getUtility
+from plone.multilingualbehavior import directives as pam
 
-class FeatureImage(namedfile.NamedBlobImage):
-
-    def __init__(self, *args, **kwargs):
-        super(FeatureImage, self).__init__(*args, **kwargs)
-
-    @property
-    def description(self):
-        try:
-            registry = getUtility(IRegistry)
-        except ComponentLookupError:
-            return u''
-        proxy = registry.forInterface(IFeaturableSettings)
-        return u"Upload feature image. Required size is %sx%s" % (
-                proxy.feature_image_width,
-                proxy.feature_image_height
-        )
-
-    @description.setter
-    def description(self, value):
-        pass
 
 class IFeaturable(form.Schema, IBaseFeaturable):
     """
@@ -49,18 +30,31 @@ class IFeaturable(form.Schema, IBaseFeaturable):
 
     form.fieldset('settings',
         label=_(u'Settings'),
-        fields=['feature_image', 'is_featured']
+        fields=['is_featured']
     )
 
-    feature_image = namedfile.NamedBlobImage(
-        title=_(u'Feature Image'),
+    pam.languageindependent('image')
+    image = namedfile.NamedBlobImage(
+        title=_(u'Image'),
         required=False,
     )
 
+    imageCaption = schema.TextLine(
+        title=_(u'Image Caption'),
+        required=False
+    )
+
+    pam.languageindependent('is_featured')
     is_featured = schema.Bool(
         title=_(u'Is Featured'),
         description=_(u'Feature this item'),
     )
+
+    pam.languageindependent('feature_hide_image')
+    feature_hide_image = schema.Bool(
+        title=_(u'Hide image from displaying in feature listings'),
+    )
+
 
 alsoProvides(IFeaturable,IFormFieldProvider)
 
@@ -73,6 +67,7 @@ class Featurable(object):
 
     _delegated_attributes = [
         'feature_image',
+        'feature_image_caption',
         'is_featured'
     ]
 
