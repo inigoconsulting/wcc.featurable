@@ -1,0 +1,6 @@
+<div id="wcc-featurable-imageviewlet" style="float:right;width:210px;"
+    tal:condition="view/enabled">
+    <img tal:replace="structure python:view.get_feature_image()"/>
+    <p tal:condition="context/imageCaption|nothing"
+        class="discreet" tal:content="context/imageCaption|nothing"></p>
+</div>

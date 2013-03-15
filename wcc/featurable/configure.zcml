@@ -16,6 +16,7 @@
     <include package=".behavior"/>
     <include package=".portlet"/>
     <include package=".cmv"/>
+    <include package=".browser"/>
     <interface interface=".interfaces.IFeaturable"/>
 
     <class class="Products.ATContentTypes.content.document.ATDocument"> 

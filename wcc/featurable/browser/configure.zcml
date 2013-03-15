@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:zcml="http://namespaces.zope.org/zcml">
+
+
+    <browser:viewlet
+        name="wcc.featureable.featureimage_viewlet"
+        for="..interfaces.IFeaturable"
+        class=".featureimage_viewlet.FeatureImageViewlet"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        layer="..interfaces.IProductSpecific"
+        permission="zope2.View"
+    />
+
+
+</configure>
