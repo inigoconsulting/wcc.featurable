@@ -4,6 +4,8 @@ from wcc.featurable.behavior.featurable import IFeaturable as IDexterityFeaturab
 from zope.component import getUtility
 from plone.registry.interfaces import IRegistry
 from AccessControl import getSecurityManager
+from logging import getLogger
+logger = getLogger('wcc.featurable')
 
 class FeatureImageUtilView(grok.View):
     grok.context(IFeaturable)
@@ -21,4 +23,12 @@ class FeatureImageUtilView(grok.View):
         result = scales.scale('image', 
                 width=proxy.feature_image_width,
                 height=999, direction='keep')
-        return result.tag() if result else ''
+        try:
+            return result.tag() if result else ''
+        except IOError:
+            logger.error(
+                'Broken Feature Image : %s' % (
+                    self.context.absolute_url()
+                )
+            )
+            return ''
