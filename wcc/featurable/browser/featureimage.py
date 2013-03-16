@@ -14,17 +14,21 @@ class FeatureImageUtilView(grok.View):
     def render(self):
         return str(self)
 
-    def tag(self):
+    def tag(self, scale=None, css_class=None):
         registry = getUtility(IRegistry)
         proxy = registry.forInterface(IFeaturableSettings)
         scales = self.context.restrictedTraverse('@@images')
         if getattr(self.context, 'feature_hide_image', False):
             return ''
-        result = scales.scale('image', 
+
+        if scale is None:
+            result = scales.scale('image', 
                 width=proxy.feature_image_width,
                 height=999, direction='keep')
+        else:
+            result = scales.scale('image', scale=scale)
         try:
-            return result.tag() if result else ''
+            return result.tag(css_class=css_class) if result else ''
         except IOError:
             logger.error(
                 'Broken Feature Image : %s' % (

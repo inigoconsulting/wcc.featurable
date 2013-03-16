@@ -1,6 +1,11 @@
-<div id="wcc-featurable-imageviewlet" style="float:right;width:210px;"
+<div id="wcc-featurable-imageviewlet"
+    class="newsImageContainer"
     tal:condition="view/enabled">
-    <img tal:replace="structure python:view.get_feature_image()"/>
+
+    <a>
+        <img tal:replace="structure python:view.get_feature_image('preview')"/>
+    </a>
+
     <p tal:condition="context/imageCaption|nothing"
         class="discreet" tal:content="context/imageCaption|nothing"></p>
 </div>

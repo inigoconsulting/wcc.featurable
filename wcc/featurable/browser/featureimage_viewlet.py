@@ -17,9 +17,9 @@ class FeatureImageViewlet(ViewletBase):
             return True
         return False
 
-    def get_feature_image(self):
+    def get_feature_image(self, scale='mini', css_class=None):
         obj = self.context
         featureimages = obj.restrictedTraverse('@@featureimages')
-        result = featureimages.tag()
+        result = featureimages.tag(scale=scale, css_class=css_class)
         return result if result else ''
 
