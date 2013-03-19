@@ -30,7 +30,7 @@ class IFeaturable(form.Schema, IBaseFeaturable):
 
     form.fieldset('settings',
         label=_(u'Settings'),
-        fields=['is_featured']
+        fields=['is_featured', 'feature_hide_image']
     )
 
     pam.languageindependent('image')
@@ -66,9 +66,10 @@ class Featurable(object):
     adapts(IDexterityContent)
 
     _delegated_attributes = [
-        'feature_image',
-        'feature_image_caption',
-        'is_featured'
+        'image',
+        'imageCaption',
+        'is_featured',
+        'feature_hide_image'
     ]
 
     def __init__(self, context):

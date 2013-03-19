@@ -14,5 +14,15 @@
         permission="zope2.View"
     />
 
+    <browser:viewlet
+        name="wcc.featureable.featureimage_viewlet"
+        for="..behavior.featurable.IFeaturable"
+        class=".featureimage_viewlet.FeatureImageViewlet"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        layer="..interfaces.IProductSpecific"
+        permission="zope2.View"
+    />
+
+
 
 </configure>

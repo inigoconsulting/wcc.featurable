@@ -117,6 +117,8 @@ def to1004(context):
             lang = obj.getField('language').get(obj)
             newimage.getField('language').set(newimage, lang)
             obj.feature_image = None
+            if not obj.getField('feature_image'):
+                continue
             obj.getField('feature_image').set(obj, newimage)
             obj.reindexObject()
             newimage.reindexObject()
