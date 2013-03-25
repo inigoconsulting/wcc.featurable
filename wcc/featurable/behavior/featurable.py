@@ -19,7 +19,7 @@ from Products.ATContentTypes.interfaces.image import IATImage
 from plone.registry.interfaces import IRegistry
 from zope.component import ComponentLookupError, getUtility
 from plone.multilingualbehavior import directives as pam
-
+from Acquisition import aq_base
 
 class IFeaturable(form.Schema, IBaseFeaturable):
     """
@@ -73,7 +73,7 @@ class Featurable(object):
     ]
 
     def __init__(self, context):
-        self.context = context
+        self.context = aq_base(context)
 
     def __getattr__(self, key):
         if key in self._delegated_attributes:
