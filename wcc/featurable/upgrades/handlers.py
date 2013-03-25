@@ -14,6 +14,15 @@ logger = getLogger('wcc.featurable.upgrade')
 # -*- extra stuff goes here -*- 
 
 
+@gs.upgradestep(title=u'Upgrade wcc.featurable to 1006',
+                description=u'Upgrade wcc.featurable to 1006',
+                source='1005', destination='1006',
+                sortkey=1, profile='wcc.featurable:default')
+def to1006(context):
+    setup = getToolByName(context, 'portal_setup')
+    setup.runAllImportStepsFromProfile('profile-wcc.featurable.upgrades:to1006')
+
+
 @gs.upgradestep(title=u'Upgrade wcc.featurable to 1005',
                 description=u'Upgrade wcc.featurable to 1005',
                 source='1004', destination='1005',

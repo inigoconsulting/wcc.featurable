@@ -4,7 +4,6 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       metal:use-macro="here/main_template/macros/master">
       <head>
-
           <metal:block fill-slot="style_slot">
                 <link rel="stylesheet" href="++resource++wcc.featurable/gridlisting.css"/>
             </metal:block>
