@@ -54,7 +54,7 @@
     </div>
     <div style="text-align:right;padding-right:50px;font-weight:bold" 
         class="featureportlet-more-news">
-        <a tal:attributes="href collection/absolute_url">
+        <a tal:attributes="href view/more_link">
             &raquo; <span i18n:translate="more_news">More News</span>
     </a>
     </div>

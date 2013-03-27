@@ -16,6 +16,12 @@ class IFeatureRendererSchema(Interface):
         values=[2,3,4]
     )
 
+    more_link = schema.TextLine(
+        title=_(u'More Link'),
+        description=_(u'URL to link to on the "More News" link'),
+        default=u''
+    )
+
 class FeatureRenderer(BaseRenderer):
     title=_("WCC Feature Renderer")
     template = ViewPageTemplateFile('templates/feature.pt')
@@ -50,3 +56,7 @@ class FeatureRenderer(BaseRenderer):
     def items(self):
         columns = self.data.columns
         return [i.getObject() for i in self.results()[:columns]]
+
+    def more_link(self):
+        collection_url = self.collection().absolute_url()
+        return getattr(self.data, 'more_link', None) or collection_url
