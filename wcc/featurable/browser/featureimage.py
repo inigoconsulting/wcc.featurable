@@ -14,17 +14,20 @@ class FeatureImageUtilView(grok.View):
     def render(self):
         return str(self)
 
-    def tag(self, scale=None, css_class=None):
+    def tag(self, scale=None, css_class=None, width=None, height=None):
         registry = getUtility(IRegistry)
         proxy = registry.forInterface(IFeaturableSettings)
         scales = self.context.restrictedTraverse('@@images')
         if getattr(self.context, 'feature_hide_image', False):
             return ''
 
+
+        scale_width = width or proxy.feature_image_width
+        scale_height = height or 999
         if scale is None:
             result = scales.scale('image', 
-                width=proxy.feature_image_width,
-                height=999, direction='keep')
+                width=scale_width,
+                height=scale_height, direction='keep')
         else:
             result = scales.scale('image', scale=scale)
         try:
