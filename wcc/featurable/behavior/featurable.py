@@ -73,7 +73,7 @@ class Featurable(object):
     ]
 
     def __init__(self, context):
-        self.context = aq_base(context)
+        self.context = aq_inner(context)
 
     def __getattr__(self, key):
         if key in self._delegated_attributes:
