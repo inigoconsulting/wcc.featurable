@@ -14,7 +14,8 @@ class FeatureImageViewlet(ViewletBase):
         if IATNewsItem.providedBy(self.context):
             return False
         if IFeaturable.providedBy(self.context):
-            return True
+            if self.get_feature_image():
+                return True
         return False
 
     def get_feature_image(self, scale='mini', css_class=None):
