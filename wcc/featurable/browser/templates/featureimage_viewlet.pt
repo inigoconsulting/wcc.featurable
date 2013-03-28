@@ -1,5 +1,6 @@
 <div id="wcc-featurable-imageviewlet"
     class="newsImageContainer"
+    style="width:400px"
     tal:condition="view/enabled">
 
     <a>
@@ -7,5 +8,6 @@
     </a>
 
     <p tal:condition="context/imageCaption|nothing"
+        style="width:auto"
         class="discreet" tal:content="context/imageCaption|nothing"></p>
 </div>
