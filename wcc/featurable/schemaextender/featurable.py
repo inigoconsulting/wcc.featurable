@@ -63,11 +63,20 @@ class Featurable(grok.Adapter):
                 widget=atapi.StringField._properties['widget'](
                     label=_('Image Caption')
                 )
-            )
+            ),
         ]
 
-
         fields = [
+
+            ExtensionStringField('imageCopyright',
+                required = 0,
+                languageIndependent = False,
+                storage = atapi.AttributeStorage(),
+                widget=atapi.StringField._properties['widget'](
+                    label=_('Image Copyright')
+                )
+            ),
+
             ExtensionBooleanField('is_featured',
                 schemata='settings',
                 languageIndependent = 1,

@@ -41,7 +41,14 @@ class IFeaturable(form.Schema, IBaseFeaturable):
 
     imageCaption = schema.TextLine(
         title=_(u'Image Caption'),
-        required=False
+        required=False,
+        default=u''
+    )
+
+    imageCopyright = schema.TextLine(
+        title=_(u'Image Copyright'),
+        required=False,
+        default=u'',
     )
 
     pam.languageindependent('is_featured')
