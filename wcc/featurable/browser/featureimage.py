@@ -25,11 +25,21 @@ class FeatureImageUtilView(grok.View):
         scale_width = width or proxy.feature_image_width
         scale_height = height or 999
         if scale is None:
-            result = scales.scale('image', 
-                width=scale_width,
-                height=scale_height, direction='keep')
+            try:
+                result = scales.scale('image', 
+                    width=scale_width,
+                    height=scale_height, direction='keep')
+            except:
+                logger.error(
+                    'Broken Feature Image : %s' % (
+                        self.context.absolute_url()
+                    )
+                )
+                return ''
         else:
             result = scales.scale('image', scale=scale)
+
+
         try:
             return result.tag(css_class=css_class) if result else ''
         except IOError:
