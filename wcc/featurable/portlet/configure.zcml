@@ -6,6 +6,14 @@
     <include package="plone.app.portlets" file="permissions.zcml"/>
     <!-- -*- extra stuff goes here -*- -->
     <plone:portlet
+        name="wcc.featurable.portlet.FeaturePortlet"
+        interface=".featureportlet.IFeaturePortlet"
+        assignment=".featureportlet.Assignment"
+        renderer=".featureportlet.Renderer"
+        addview=".featureportlet.AddForm"
+        editview=".featureportlet.EditForm"
+        />
+    <plone:portlet
         name="wcc.featurable.portlet.FeaturedContent"
         interface=".featuredcontent.IFeaturedContent"
         assignment=".featuredcontent.Assignment"

@@ -6,9 +6,5 @@
    addview="wcc.featurable.portlet.FeaturePortlet"
    title="Featured Content from Collection"
    description=""/>
- <portlet 
-   addview="wcc.featurable.portlet.FeaturedContent"
-   title="Featured Content"
-   description="List featured contents"/>
 
 </portlets>

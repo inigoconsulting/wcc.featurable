@@ -1,0 +1,11 @@
+<div class="portlet portletFeaturePortlet"
+    i18n:domain="wcc.featurable">
+
+    <h3 tal:content="view/data/title"></h3>
+
+    <div tal:define="item view/item;"
+        tal:condition="item">
+        <img tal:define="scales nocall:item/@@featureimages;"
+            tal:replace="structure python:scales.tag(scale='mini')"/>
+    </div>
+</div>
