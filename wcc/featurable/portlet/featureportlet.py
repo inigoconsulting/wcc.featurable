@@ -42,12 +42,19 @@ class IFeaturePortlet(IPortletDataProvider):
             {'portal_type': ('Topic', 'Collection')},
             default_query='path:'))
 
+    show_content_title = schema.Bool(
+        title=_(u'Show title'),
+        required=True,
+        default=False
+    )
+
 
 class Assignment(base.Assignment):
     implements(IFeaturePortlet)
 
     header = u''
     target_collection = ''
+    show_content_title = False
 
     def __init__(self, **kwargs):
         for k, v in kwargs.items():

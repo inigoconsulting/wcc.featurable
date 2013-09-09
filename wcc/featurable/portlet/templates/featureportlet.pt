@@ -1,11 +1,17 @@
-<div class="portlet portletFeaturePortlet"
-    i18n:domain="wcc.featurable">
+<div class="portletFeaturePortlet"
+    i18n:domain="wcc.featurable"
+    tal:define="collection view/collection">
 
-    <h3 tal:content="view/data/title"></h3>
+    <h3><a tal:attributes="href collection/absolute_url"
+            tal:content="view/data/title"></a></h3>
 
     <div tal:define="item view/item;"
         tal:condition="item">
         <img tal:define="scales nocall:item/@@featureimages;"
             tal:replace="structure python:scales.tag(scale='mini')"/>
+        <h4 tal:condition="view/data/show_content_title">
+            <a tal:attributes="href item/absolute_url"
+                tal:content="item/Title"></a>
+        </h4>
     </div>
 </div>

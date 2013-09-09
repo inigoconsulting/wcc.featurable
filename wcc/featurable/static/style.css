@@ -6,3 +6,16 @@
     padding:10px;
     vertical-align:top;
 }
+
+.portletFeaturePortlet h3 {
+    font-size: 15px;
+}
+
+.portletFeaturePortlet h4 {
+    font-size: 14px;
+}
+
+.portletFeaturePortlet img {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
