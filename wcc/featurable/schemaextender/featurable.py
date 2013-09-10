@@ -16,6 +16,8 @@ from archetypes.referencebrowserwidget.widget import ReferenceBrowserWidget
 from plone.app.blob.field import ImageField as BlobImageField
 from Products.ATContentTypes.interfaces import IATNewsItem
 
+from redturtle.video.interfaces import IRTVideo
+
 # Visit http://pypi.python.org/pypi/archetypes.schemaextender for full 
 # documentation on writing extenders
 
@@ -45,7 +47,7 @@ class Featurable(grok.Adapter):
 
     @property
     def fields(self):
-        image_fields = [
+        image_field = [
             # add your extension fields here
             ExtensionBlobImageField('image',
                 required = 0,
@@ -55,6 +57,9 @@ class Featurable(grok.Adapter):
                     label=_('Image'),
                 )
             ),
+        ]
+
+        image_caption_field = [
 
             ExtensionStringField('imageCaption',
                 required = 0,
@@ -94,10 +99,14 @@ class Featurable(grok.Adapter):
             )
         ]
 
+        
         if IATNewsItem.providedBy(self.context):
             return fields
 
-        return image_fields + fields
+        if IRTVideo.providedBy(self.context):
+            return image_caption_field + fields
+
+        return image_field + image_caption_field + fields
 
     def __init__(self, context):
         self.context = context
