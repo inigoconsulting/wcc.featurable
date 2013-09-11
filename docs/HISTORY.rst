@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.22 (unreleased)
+1.22 (2013-09-11)
 -----------------
 
 - Nothing changed yet.
