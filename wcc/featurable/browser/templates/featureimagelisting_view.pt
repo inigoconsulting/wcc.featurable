@@ -40,10 +40,10 @@
                    item_sametime python: item_start == item_end;
                    item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False">
  
-                   <p class="datelocation">When</p>
 
                         <span tal:condition="python: item_type == 'Event' and item_sametime"
                               i18n:translate="label_event_byline_onlyfrom">
+                   <p class="datelocation">When</p>
                              <abbr class="dtstart"
                                    tal:attributes="title python:item_start"
                                    tal:content="python:toLocalizedTime(item_start,long_format=1)"
@@ -51,6 +51,7 @@
                         </span>
                         <span tal:condition="python: item_type == 'Event' and item_samedate and not item_sametime"
                               i18n:translate="label_event_byline_samedate">
+                   <p class="datelocation">When</p>
                              <abbr class="dtstart"
                                    tal:attributes="title python:item_start"
                                    tal:content="python:toLocalizedTime(item_start)"
@@ -66,6 +67,7 @@
                         </span>
                         <span tal:condition="python: item_type == 'Event' and not item_samedate and not item_sametime"
                               i18n:translate="label_event_byline">
+                   <p class="datelocation">When</p>
                               from
                                    <abbr class="dtstart"
                                    tal:attributes="title python:item_start"
@@ -77,9 +79,10 @@
                                    i18n:name="end">to date</abbr>
                         </span>
 
-                        <p class="datelocation"></p>
                          <span tal:condition="python: item_type == 'Event' and item.location"
                               i18n:translate="label_event_byline_location">
+
+                        <p class="datelocation">Where</p>
                              <span tal:content="string:${item/location}"
                                    class="location"
                                    i18n:name="location">Oslo</span>
