@@ -27,12 +27,7 @@
                                 <img tal:replace="structure python:filview.get_feature_image(obj)"/>
                             </a>
                         </td>
-                        <td>
-                            <h4><a tal:attributes="href item/getURL"
-                                    tal:content="item/Title"></a></h4>
-                            <p tal:content="item/Description"></p>
-                        </td>
-                        <td tal:define="
+                                             <td tal:define="
                             
                    item_type item/portal_type;
                    item_start item/start|item/StartDate|nothing;
@@ -40,7 +35,11 @@
                    item_sametime python: item_start == item_end;
                    item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False">
  
+       <h4><a tal:attributes="href item/getURL"
+                                    tal:content="item/Title"></a></h4>
+                            <p tal:content="item/Description"></p>
 
+                            <div class="date-location-size">
                         <span tal:condition="python: item_type == 'Event' and item_sametime"
                               i18n:translate="label_event_byline_onlyfrom">
                    <p class="datelocation">When</p>
@@ -87,6 +86,7 @@
                                    class="location"
                                    i18n:name="location">Oslo</span>
                         </span>
+                    </div>
 
 
                         </td>
