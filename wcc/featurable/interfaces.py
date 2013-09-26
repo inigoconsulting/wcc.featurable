@@ -21,3 +21,6 @@ class IFeaturableSettings(Interface):
 
 class IFeaturableProvider(Interface):
     pass
+
+class IFeatureImageViewletDisabled(Interface):
+    pass
