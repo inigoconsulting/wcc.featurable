@@ -29,3 +29,9 @@
 .date-location-size {
     font-size: 12px;
 }
+
+.newsImageContainer > p > * {
+
+    color:white;
+    }
+    

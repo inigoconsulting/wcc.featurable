@@ -9,5 +9,5 @@
 
     <p tal:condition="context/imageCaption|nothing"
         style="width:auto"
-        class="discreet" tal:content="context/imageCaption|nothing"></p>
+        class="discreet" tal:content="structure context/imageCaption|nothing"></p>
 </div>
