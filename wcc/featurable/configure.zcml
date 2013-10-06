@@ -44,6 +44,11 @@
        <implements interface="wcc.featurable.interfaces.IFeaturable"/> 
     </class>
 
+    <class class="plone.app.blob.content.ATBlob"> 
+       <implements interface="wcc.featurable.interfaces.IFeaturable"/> 
+    </class>
+
+
     <!-- -*- extra stuff goes here -*- -->
 
 </configure>
