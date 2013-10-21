@@ -34,4 +34,7 @@
 
     color:white;
     }
-    
+
+.featureportlet-image-link img {
+    margin-bottom: 0 !important;
+}    
