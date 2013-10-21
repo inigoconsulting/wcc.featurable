@@ -9,6 +9,7 @@
     <div tal:condition="item">
         <a tal:attributes="href item/absolute_url">
             <img tal:define="scales nocall:item/@@featureimages|nothing;"
+                style="margin-bottom:4px;"
                 tal:condition="scales"
                 tal:replace="structure python:scales.tag(scale='mini')"/>
         </a>
