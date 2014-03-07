@@ -32,61 +32,66 @@
                    item_type item/portal_type;
                    item_start item/start|item/StartDate|nothing;
                    item_end item/end|item/EndDate|nothing;
-                   item_sametime python: item_start == item_end;
-                   item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False">
+                   item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False;
+                   item_samemonth python: item_start.month() == item_end.month();
+                   item_sameyear python: item_start.year() == item_end.year()">
  
-       <h4><a tal:attributes="href item/getURL"
+       <h4 class="event-listing-title"><a tal:attributes="href item/getURL"
                                     tal:content="item/Title"></a></h4>
-                            <p tal:content="item/Description"></p>
 
                             <div class="date-location-size">
-                        <span tal:condition="python: item_type == 'Event' and item_sametime"
+                        <span tal:condition="python: item_type == 'Event' and item_samedate"
                               i18n:translate="label_event_byline_onlyfrom">
-                   <p class="datelocation">When</p>
                              <abbr class="dtstart"
-                                   tal:attributes="title python:item_start"
-                                   tal:content="python:toLocalizedTime(item_start,long_format=1)"
-                                   i18n:name="start">from date</abbr>
-                        </span>
-                        <span tal:condition="python: item_type == 'Event' and item_samedate and not item_sametime"
-                              i18n:translate="label_event_byline_samedate">
-                   <p class="datelocation">When</p>
-                             <abbr class="dtstart"
-                                   tal:attributes="title python:item_start"
                                    tal:content="python:toLocalizedTime(item_start)"
-                                   i18n:name="start">from date</abbr> from
+                                   i18n:name="sameday_event">sameday event</abbr>
+                        </span>
+                        <span tal:condition="python: item_type == 'Event' and item_samemonth and not item_samedate and item_sameyear"
+                              i18n:translate="label_event_byline_onlyfrom">
                              <abbr class="dtstart"
-                                   tal:attributes="title python:item_start"
-                                   tal:content="python:toLocalizedTime(item_start,time_only=1)"
-                                   i18n:name="starttime">from time</abbr> to
-                             <abbr class="dtend"
-                                   tal:attributes="title python:item_end"
-                                   tal:content="python:toLocalizedTime(item_end,time_only=1)"
-                                   i18n:name="end">to time</abbr>
+                                   tal:content="string: ${item_start/day}"
+                                   i18n:name="samemonth_start">same month</abbr>
+                            -
+                            <abbr class="dtend"
+                                   tal:content="python: '{0.day} {0:%B %Y}'.format(item_end.asdatetime())"
+                                   i18n:name="samemonth_end">same month</abbr>
+
                         </span>
-                        <span tal:condition="python: item_type == 'Event' and not item_samedate and not item_sametime"
-                              i18n:translate="label_event_byline">
-                   <p class="datelocation">When</p>
-                              from
-                                   <abbr class="dtstart"
-                                   tal:attributes="title python:item_start"
-                                   tal:content="python:toLocalizedTime(item_start,long_format=1)"
-                                   i18n:name="start">from date</abbr> to
-                             <abbr class="dtend"
-                                   tal:attributes="title python:item_end"
-                                   tal:content="python:toLocalizedTime(item_end,long_format=1)"
-                                   i18n:name="end">to date</abbr>
+                    <span tal:condition="python: item_type == 'Event' and not item_samemonth and not item_samedate and item_sameyear"
+                              i18n:translate="label_event_byline_onlyfrom">
+                             <abbr class="dtstart"
+                                   tal:content="python: '{0.day} {0:%B}'.format(item_start.asdatetime())"
+                                   i18n:name="sameyear_start">same month</abbr>
+                            -
+                            <abbr class="dtend"
+                                   tal:content="python: '{0.day} {0:%B %Y}'.format(item_end.asdatetime())"
+                                   i18n:name="sameyear_end">same month</abbr>
+
                         </span>
+                    <span tal:condition="python: item_type == 'Event' and not item_sameyear"
+                              i18n:translate="label_event_byline_onlyfrom">
+                             <abbr class="dtstart"
+                                   tal:content="python:toLocalizedTime(item_start)"
+                                   i18n:name="notsame_start">same month</abbr>
+                            -
+                            <abbr class="dtend"
+                                   tal:content="python: toLocalizedTime(item_end)"
+                                   i18n:name="notsame_end">same month</abbr>
+
+                        </span>
+
+
+
 
                          <span tal:condition="python: item_type == 'Event' and item.location"
                               i18n:translate="label_event_byline_location">
 
-                        <p class="datelocation">Where</p>
-                             <span tal:content="string:${item/location}"
-                                   class="location"
+                             <span class="eventlisting-location" tal:content="string:${item/location}"
                                    i18n:name="location">Oslo</span>
                         </span>
                     </div>
+
+                            <p tal:content="item/Description"></p>
 
 
                         </td>

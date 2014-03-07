@@ -27,7 +27,8 @@
 
 }
 .date-location-size {
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .newsImageContainer > p > * {
@@ -38,3 +39,12 @@
 .featureportlet-image-link img {
     margin-bottom: 0 !important;
 }    
+
+.eventlisting-location {
+    display: block;
+    font-size: 14px;
+}
+
+.event-listing-title {
+    margin: 0 0 10px 0;
+}
