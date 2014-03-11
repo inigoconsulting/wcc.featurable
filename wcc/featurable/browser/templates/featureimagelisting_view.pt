@@ -49,7 +49,7 @@
                         <span tal:condition="python: item_type == 'Event' and item_samemonth and not item_samedate and item_sameyear"
                               i18n:translate="label_event_byline_onlyfrom">
                              <abbr class="dtstart"
-                                   tal:content="string: ${item_start/day}"
+                                   tal:content="python: item_start.strftime('%d')"
                                    i18n:name="start">same month</abbr>
                             -
                             <abbr class="dtend"
