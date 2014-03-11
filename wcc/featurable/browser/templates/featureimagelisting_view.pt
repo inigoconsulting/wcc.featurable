@@ -53,8 +53,7 @@
                                    i18n:name="start">same month</abbr>
                             -
                             <abbr class="dtend"
-                                   tal:content="python:
-                                   toLocalizedTime('{0.day} {0:%B %Y}'.format(item_end.asdatetime()))"
+                                   tal:content="python: toLocalizedTime('{0.day} {0:%B %Y}'.format(item_end.asdatetime()))"
                                    i18n:name="end">same month</abbr>
 
                         </span>
