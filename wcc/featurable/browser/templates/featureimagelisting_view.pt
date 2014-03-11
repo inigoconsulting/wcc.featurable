@@ -44,39 +44,39 @@
                               i18n:translate="label_event_byline_onlyfrom">
                              <abbr class="dtstart"
                                    tal:content="python:toLocalizedTime(item_start)"
-                                   i18n:name="start">sameday event</abbr>
+                                   i18n:name="start">date</abbr>
                         </span>
                         <span tal:condition="python: item_type == 'Event' and item_samemonth and not item_samedate and item_sameyear"
                               i18n:translate="label_event_byline_onlyfrom">
                              <abbr class="dtstart"
-                                   tal:content="python: item_start.strftime('%d')"
-                                   i18n:name="start">same month</abbr>
+                                   tal:content="python: toLocalizedTime(item_start).split()[0]"
+                                   i18n:name="start">date</abbr>
                             -
                             <abbr class="dtend"
                                    tal:content="python: toLocalizedTime('{0.day} {0:%B %Y}'.format(item_end.asdatetime()))"
-                                   i18n:name="end">same month</abbr>
+                                   i18n:name="end">date</abbr>
 
                         </span>
                     <span tal:condition="python: item_type == 'Event' and not item_samemonth and not item_samedate and item_sameyear"
                               i18n:translate="label_event_byline_onlyfrom">
                              <abbr class="dtstart"
                                    tal:content="python: toLocalizedTime('{0.day} {0:%B}'.format(item_start.asdatetime())).replace(str(item_start.year()), '')"
-                                   i18n:name="start">same month</abbr>
+                                   i18n:name="start">date</abbr>
                             -
                             <abbr class="dtend"
                                    tal:content="python: toLocalizedTime('{0.day} {0:%B %Y}'.format(item_end.asdatetime()))"
-                                   i18n:name="end">same month</abbr>
+                                   i18n:name="end">date</abbr>
 
                         </span>
                     <span tal:condition="python: item_type == 'Event' and not item_sameyear"
                               i18n:translate="label_event_byline_onlyfrom">
                              <abbr class="dtstart"
                                    tal:content="python:toLocalizedTime(item_start)"
-                                   i18n:name="start">same month</abbr>
+                                   i18n:name="start">date</abbr>
                             -
                             <abbr class="dtend"
                                    tal:content="python: toLocalizedTime(item_end)"
-                                   i18n:name="end">same month</abbr>
+                                   i18n:name="end">date</abbr>
 
                         </span>
 
