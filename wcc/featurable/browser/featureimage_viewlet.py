@@ -6,6 +6,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from wcc.featurable.interfaces import IFeaturableSettings, IFeaturable
 from wcc.featurable.interfaces import IFeatureImageViewletDisabled
 from Products.ATContentTypes.interfaces import IATNewsItem
+from Products.ATContentTypes.interfaces import IATFolder
 from redturtle.video.interfaces import IRTVideo
 
 class FeatureImageViewlet(ViewletBase):
@@ -16,6 +17,8 @@ class FeatureImageViewlet(ViewletBase):
         if IFeatureImageViewletDisabled.providedBy(self.context):
             return False
         if IATNewsItem.providedBy(self.context):
+            return False
+        if IATFolder.providedBy(self.context):
             return False
         if IRTVideo.providedBy(self.context):
             return False
@@ -29,4 +32,3 @@ class FeatureImageViewlet(ViewletBase):
         featureimages = obj.restrictedTraverse('@@featureimages')
         result = featureimages.tag(scale=scale, css_class=css_class)
         return result if result else ''
-
