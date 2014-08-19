@@ -6,7 +6,7 @@
       <head>
 </head>
 <body>
-    <div metal:fill-slot="content-core">
+    <div metal:fill-slot="content-core" class="featureimagelisting">
         <metal:macro define-macro="content-core">
         <tal:def define="kssClassesView context/@@kss_field_decorator_view;
             getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
@@ -18,16 +18,16 @@
             filview nocall:context/@@featureimagelisting_view">
             <metal:macro use-macro="listing_macro">
                 <metal:slot fill-slot="entries">
-                    <table style="width:100%">
-                        <tr tal:repeat="item batch"  metal:define-macro="entries"
-                            class="featureimagelisting-row">
-                        <td tal:define="obj item/getObject"
-                            tal:attributes="width string:${filview/get_featureimage_width}px">
-                            <a tal:attributes="href item/getURL">
-                                <img tal:replace="structure python:filview.get_feature_image(obj)"/>
-                            </a>
-                        </td>
-                                             <td tal:define="
+                    
+                        <div tal:repeat="item batch"  metal:define-macro="entries"
+                            class="featureimagelisting-row row">
+                            <div tal:define="obj item/getObject" class="large-2 medium-2 columns"
+                                tal:attributes="width string:${filview/get_featureimage_width}px">
+                                <a tal:attributes="href item/getURL">
+                                    <img tal:replace="structure python:filview.get_feature_image(obj)"/>
+                                </a>
+                            </div>
+                            <div class="large-10 medium-10 columns" tal:define="
                             
                    item_type item/portal_type;
                    item_start item/start|item/StartDate|nothing;
@@ -94,9 +94,9 @@
                             <p tal:content="item/Description"></p>
 
 
-                        </td>
-                    </tr>
-                </table>
+                        </div>
+                    </div>
+                        
                 </metal:slot>
             </metal:macro>
         </tal:block>
