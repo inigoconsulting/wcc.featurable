@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.36.dev0'
+version = '1.36'
 
 setup(name='wcc.featurable',
       version=version,
