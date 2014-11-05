@@ -6,56 +6,30 @@
         <tal:block repeat="item view/items">
             <div tal:attributes="class python:view.get_class(repeatindex)"
                 tal:define="repeatindex repeat/item/index">
-                <dl class="portlet portletFeaturedContent"
+                <div class="portlet portletFeaturedContent"
                     i18n:domain="wcc.featurable">
-                    <dt class="portletHeader">
-                        <span class="portletTopLeft"></span>
-                        <span><a tal:attributes="href item/absolute_url" 
-                                tal:content="item/Title"></a></span>
-                        <span class="portletTopRight"></span>
 
-                    </dt>
-
-                    <dd class="portletItem odd">
+                    <div class="portletItem odd">
                         <div tal:define="featureimage python:view.get_feature_image(item)">
 
 
                             <div tal:condition="featureimage"
-                                class="featureImage" style="margin: 10px 0px;text-align:center">
+                                class="featureImage">
                                 <a tal:attributes="href item/absolute_url">
                                     <img tal:replace="structure featureimage"/>
                                 </a>
                             </div>
-                            <div class="featureDescription"
-                                tal:condition="not:featureimage">
-                                <p tal:content="item/Description"></p>
-                            </div>
                         </div>
                         <div class="visualClear"></div>
-                        <script>
-                            $(document).ready(function () {
-                            $('.portletFeaturedContent .featureDescription p').trunk8({
-                            lines: 10
-                            }).each(
-                            function () {
-                            var text = $(this).html();
-                            if (text.match('…$')) {
-                            $(this).html(text.split(" ").slice(0,
-                            -1).join(" ") + '…');
-                            }
-                            }
-                            );
-                            })
-                        </script>
-                    </dd>
-                </dl>
+
+                    </div>
+                </div>
             </div>
         </tal:block>
     </div>
-    <div style="text-align:right;padding-right:50px;font-weight:bold" 
-        class="featureportlet-more-news">
+    <div class="row portletFeaturedContentFooter" >
         <a tal:attributes="href view/more_link">
-            &raquo; <span i18n:translate="more_news">More News</span>
+            &raquo; <span i18n:translate="more">More</span> &laquo;
     </a>
     </div>
 </tal:block>

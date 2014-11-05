@@ -10,7 +10,7 @@ from zope.interface import Interface
 from zope import schema
 
 class IFeatureRendererSchema(Interface):
-    columns = schema.Choice(
+    olumns = schema.Choice(
         title=_(u"Columns"),
         description=_(u"Number of columns to render"),
         values=[2,3,4]
@@ -18,7 +18,7 @@ class IFeatureRendererSchema(Interface):
 
     more_link = schema.TextLine(
         title=_(u'More Link'),
-        description=_(u'URL to link to on the "More News" link'),
+        description=_(u'URL to link to on the "More" link'),
         default=u''
     )
 
@@ -49,13 +49,17 @@ class FeatureRenderer(BaseRenderer):
         columns = self.data.columns
         if idx == 0:
             return 'cell width-1:%s position-0' % columns
+        if columns == 4 and idx == 2:
+            columns = 2
+            idx = 1
+
         return 'cell width-1:%(columns)s position-%(pos)s:%(columns)s' % {
                 'pos':idx,'columns':columns
         }
 
     def items(self):
         columns = self.data.columns
-        return [i.getObject() for i in self.results()[:columns]]
+        return [i.getObject() for i in list(self.results())[:columns]]
 
     def more_link(self):
         collection_url = self.collection().absolute_url()

@@ -52,3 +52,16 @@
 .template-featureimagegrid_view .listingBar {
     clear: both;    
 }
+
+.portletFeaturedContent img {
+    height: 280px;
+    width: 200px;
+}
+
+.portletFeaturedContentFooter {
+    font-weight: bold;
+    font-size: 18px;
+    text-align: right;
+    margin-top: 20px;
+}
+
