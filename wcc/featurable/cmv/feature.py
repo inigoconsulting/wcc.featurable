@@ -10,7 +10,7 @@ from zope.interface import Interface
 from zope import schema
 
 class IFeatureRendererSchema(Interface):
-    olumns = schema.Choice(
+    columns = schema.Choice(
         title=_(u"Columns"),
         description=_(u"Number of columns to render"),
         values=[2,3,4]
