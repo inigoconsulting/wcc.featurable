@@ -18,7 +18,7 @@
             filview nocall:context/@@featureimagelisting_view">
             <metal:macro use-macro="listing_macro">
                 <metal:slot fill-slot="entries">
-                    <table style="width:100%">
+                    <table style="width:100%" class="event-listing">
                         <tr tal:repeat="item batch"  metal:define-macro="entries"
                             class="featureimagelisting-row">
                         <td tal:define="obj item/getObject"
