@@ -7,7 +7,7 @@
         <img tal:replace="structure python:view.get_feature_image('preview')"/>
     </a>
 
-    <p tal:condition="context/imageCaption|nothing"
-        style="width:auto"
+    <p tal:define="scales context/@@images; thumb python: scales.scale('image', scale='preview')" tal:condition="context/imageCaption|nothing"
+        tal:attributes="style string:width:${thumb/width}px"
         class="discreet" tal:content="structure context/imageCaption|nothing"></p>
 </div>
