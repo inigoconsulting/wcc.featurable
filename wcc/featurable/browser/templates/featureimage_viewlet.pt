@@ -1,6 +1,5 @@
 <div id="wcc-featurable-imageviewlet"
     class="newsImageContainer"
-    style="width:400px"
     tal:condition="view/enabled">
 
     <a>
