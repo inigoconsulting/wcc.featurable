@@ -1,5 +1,10 @@
 Changelog
 =========
+1.42.dev1 (nov 24 2015)
+-----------------
+
+- removed width style and adjust width of image caption
+
 
 1.42 (unreleased)
 -----------------
