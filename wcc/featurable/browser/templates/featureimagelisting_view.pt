@@ -93,7 +93,16 @@
 
                             <p tal:content="item/Description"></p>
 
-
+                            <tal:block tal:define="relatedItems python: item.getObject().getRelatedItems()" tal:condition="relatedItems">
+                                Related Content:&nbsp;
+                                
+                                <tal:entry tal:repeat="related relatedItems">
+                                    <a tal:content="related/Title" tal:attributes="href related/absolute_url"></a>
+                                    <tal:if tal:condition="not: repeat/related/end">
+                                        ,&nbsp;
+                                    </tal:if>
+                                </tal:entry>
+                            </tal:block>
                         </td>
                     </tr>
                 </table>
